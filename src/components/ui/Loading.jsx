@@ -1,8 +1,6 @@
 const Loading = () => {
   return (
-    <div className="flex justify-center items-center min-h-screen">
-      <span className="loading loading-ball loading-lg"></span>
-    </div>
+    <div className="loading loading-ball loading-lg flex justify-center items-center min-h-screen"></div>
   );
 };
 

@@ -19,7 +19,10 @@ const TodayTask = () => {
             }
             className="btn btn-sm btn-primary my-4 ml-1"
           >
-            Add Task
+            <span>
+              <i className="fa-solid fa-plus"></i>
+            </span>
+            <span>Add Task</span>
           </button>
         </div>
         <div className=" col-span-2">
