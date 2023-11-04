@@ -18,19 +18,24 @@ const FormInput = ({
   const { control } = useFormContext();
   return (
     <>
-      <label ht={name} className="block mt-2 text-sm font-medium text-black ">
-        {label ? label : null}
-      </label>
+      {label && (
+        <label
+          ht={name}
+          className="inline-block mt-2 text-sm font-medium text-black "
+        >
+          {label ? label : null}
+        </label>
+      )}
       <Controller
         control={control}
         name={name}
         render={({ field }) => (
           <input
             placeholder={placeholder}
-            className="input input-bordered rounded input-md input-info w-2/3 place-content-center"
+            className="input input-sm input-bordered rounded input-md input-info w-full place-content-center"
             type={type}
             {...field}
-            defaultValue={defaultValue ? defaultValue : ''}
+            defaultValue={defaultValue ? defaultValue : ""}
             value={value ? value : field.value}
           />
         )}

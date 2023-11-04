@@ -7,6 +7,31 @@ const DashboardLayout = () => {
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content">
+        <div className="navbar bg-[#023047] lg:hidden">
+          <div className="flex justify-end items-center">
+            <button className="flex justify-end items-center">
+              <label
+                htmlFor="my-drawer-2"
+                className="btn btn-square btn-ghost  "
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  className="inline-block w-5 h-5 stroke-current text-white"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  ></path>
+                </svg>
+              </label>
+            </button>
+          </div>
+        </div>
+
         <Outlet />
       </div>
       <div className="drawer-side">
@@ -15,44 +40,49 @@ const DashboardLayout = () => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="menu p-4 w-64 min-h-full bg-[#3a86ff] text-base-content">
-          <h1 className="text-3xl mb-6 text-center text-[#ede0d4] font-semibold">
-            TASK MANAGEMENT
-          </h1>
+        <ul className="menu p-4 w-64 min-h-full bg-[#023047] text-base-content">
+          <Link to="/dashboard" className="">
+            <h1 className="text-3xl mb-6 text-center text-[#ede0d4] font-semibold ">
+              TASK MANAGEMENT
+            </h1>
+          </Link>
           {/* Sidebar content here */}
           <li className="my-1">
-            <Link className="text-white text-xl font-semibold" to="/dashboard">
+            <Link
+              className="text-white text-xl font-semibold hover:text-blue-600 hover:bg-slate-100 "
+              to="/dashboard"
+            >
               <span>
                 <MdDashboardCustomize />
-              </span>{' '}
+              </span>{" "}
               <span> Dashboard</span>
             </Link>
           </li>
           <li className="my-1">
             <Link
-              className="text-white text-xl font-semibold"
+              className="text-white text-xl font-semibold hover:text-blue-600 hover:bg-slate-100 "
               to="/dashboard/today-task "
             >
               <span>
                 <i className="fa-solid fa-star"></i>
-              </span>{' '}
+              </span>{" "}
               <span>Today</span>
             </Link>
           </li>
           <li className="my-1">
             <Link
-              className="text-white text-xl font-semibold"
+              className="text-white text-xl font-semibold hover:text-blue-600 hover:bg-slate-100 "
               to="/dashboard/projects "
             >
               <span>
                 <i className="fa-solid fa-circle-check"></i>
-              </span>{' '}
+              </span>{" "}
               <span>Projects</span>
             </Link>
           </li>
           <li className="my-1">
             <Link
-              className="text-white text-xl font-semibold"
+              className="text-white text-xl font-semibold hover:text-blue-600 hover:bg-slate-100 "
               to="/dashboard/task-flow "
             >
               <span>
@@ -63,7 +93,7 @@ const DashboardLayout = () => {
           </li>
           <li className="my-1">
             <Link
-              className="text-white text-xl font-semibold"
+              className="text-white text-xl font-semibold hover:text-blue-600 hover:bg-slate-100 "
               to="/dashboard/task-report "
             >
               <span>
@@ -74,20 +104,20 @@ const DashboardLayout = () => {
           </li>
           <li className="my-1">
             <Link
-              className="text-white text-xl font-semibold"
+              className="text-white text-xl font-semibold hover:text-blue-600 hover:bg-slate-100 "
               to="/dashboard/profile "
             >
               <span>
                 <i className="fa-solid fa-user "></i>
-              </span>{' '}
+              </span>{" "}
               <span> Profile</span>
             </Link>
           </li>
           <li className="my-1">
-            <button className="text-white text-xl font-semibold">
+            <button className="text-white text-xl font-semibold hover:text-blue-600 hover:bg-slate-100 ">
               <span>
                 <i className="fa-solid fa-arrow-right-from-bracket"></i>
-              </span>{' '}
+              </span>{" "}
               Logout
             </button>
           </li>
