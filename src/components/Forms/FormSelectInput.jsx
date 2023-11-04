@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import { Controller, useFormContext } from "react-hook-form";
@@ -19,7 +20,7 @@ const FormSelectInput = ({ name, placeholder, validation, label, options }) => {
             <option disabled selected>
               {placeholder}
             </option>
-            {options && options.name((item) => <option>item</option>)}
+            {options && options.map((item) => <option>{item.option}</option>)}
           </select>
         )}
       />

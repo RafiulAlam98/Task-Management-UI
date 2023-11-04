@@ -3,6 +3,11 @@ import { useQuery } from "react-query";
 import Loading from "../ui/Loading";
 
 const TaskList = () => {
+  // const originalDate = new Date("2023-11-03T14:41:08.960Z");
+  // const options = { year: "numeric", month: "long", day: "numeric" };
+  // const formattedDate = originalDate.toLocaleDateString(undefined, options);
+
+  // console.log(formattedDate);
   const {
     data: tasks = [],
     isLoading,
@@ -17,7 +22,6 @@ const TaskList = () => {
       return data;
     },
   });
-  console.log(tasks.data);
 
   if (isLoading) {
     return <Loading />;
@@ -33,12 +37,20 @@ const TaskList = () => {
             >
               <div className="flex justify-between items-center">
                 <div className="ml-4 mr-4 ">
+                  {item.priority && (
+                    <di
+                      title={item.description}
+                      className="badge badge-sm badge-secondary badge-outline hover:cursor-pointer"
+                    >
+                      {item.priority}
+                    </di>
+                  )}
                   <h2 className="text-md font-base ">{item.title}</h2>
                   <h2 className="text-sm  text-[#17C16A] font-semibold">
                     {item.project}
                   </h2>
                 </div>
-                <h4 className="w-50 bg-[#17C16A] p-5 text-white font-semibold font-xl">
+                <h4 className="w-50 bg-[#17C16A] px-5 py-7 text-white font-semibold font-xl">
                   {item.duration} Min
                 </h4>
               </div>

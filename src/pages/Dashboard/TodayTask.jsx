@@ -4,6 +4,7 @@ import Form from "../../components/Forms/Form";
 import FormInput from "../../components/Forms/FormInput";
 import FormSelectInput from "../../components/Forms/FormSelectInput";
 import TaskList from "../../components/Tasks/TaskList";
+import { priorities } from "../../components/constant/priority";
 
 const TodayTask = () => {
   const onSubmit = (data) => {
@@ -36,7 +37,7 @@ const TodayTask = () => {
           <div className="mr-4">
             <select className="select select-sm rounded  select-info w-full max-w-xs">
               <option disabled selected>
-                Select Priority
+                All Task
               </option>
               <option>none</option>
               <option>1st Priority</option>
@@ -74,10 +75,17 @@ const TodayTask = () => {
             <Form submitHandler={onSubmit}>
               <div className="grid grid-cols-2 gap-4 justify-between">
                 <div>
-                  <FormSelectInput placeholder="Select Priority" name="" />
+                  <FormSelectInput
+                    placeholder="Select Priority"
+                    name="priority"
+                    options={priorities}
+                  />
                 </div>
                 <div>
-                  <FormSelectInput placeholder="Select Project" name="" />
+                  <FormSelectInput
+                    placeholder="Select Project"
+                    name="project"
+                  />
                 </div>
               </div>
               <div className="grid grid-cols-3 gap-4 my-3">
