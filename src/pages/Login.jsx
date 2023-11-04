@@ -1,32 +1,31 @@
 /* eslint-disable react/no-unknown-property */
-import Form from "../components/Forms/Form";
-import FormInput from "../components/Forms/FormInput";
+
+import Form from '../components/Forms/Form';
+import FormInput from '../components/Forms/FormInput';
 
 const Login = () => {
-  const onSubmit = (data) => {
+  const onSubmit = data => {
     console.log(data);
   };
   return (
-    <div className="grid lg:grid-cols-2 sm:grid-cols-1  min-h-screen">
+    <div className="grid lg:grid-cols-2 sm:grid-cols-1">
       <div>
         <img
-          src="https://img.freepik.com/free-photo/3d-render-secure-login-password-illustration_107791-16640.jpg?w=740&t=st=1699029238~exp=1699029838~hmac=40b61d6111c414fb10bb6b890ba2f42bb039c19d70e4c201b9aebc4d7b7f28fa"
+          src="https://img.freepik.com/free-vector/mobile-login-concept-illustration_114360-83.jpg?size=626&ext=jpg&ga=GA1.1.16233275.1687409673&semt=sph"
           alt=""
         />
       </div>
 
-      <div className=" place-content-center min-h-screen">
-        <Form submitHandler={onSubmit}>
-          <FormInput name="email" label="Email" type="email" />
-          <FormInput name="password" label="Password" type="text" />
-          <button
-            className="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
-            htmlType="submit"
-          >
-            Submit
-          </button>
-        </Form>
-      </div>
+      <Form submitHandler={onSubmit}>
+        <FormInput name="email" label="Email" type="email" />
+        <FormInput name="password" label="Password" type="text" />
+        <button
+          className="btn block btn-sm btn-active btn-primary mt-5"
+          htmlType="submit"
+        >
+          Submit
+        </button>
+      </Form>
     </div>
   );
 };

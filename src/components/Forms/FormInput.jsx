@@ -2,7 +2,8 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-no-duplicate-props */
 /* eslint-disable react/no-unknown-property */
-import { Controller, useForm, useFormContext } from "react-hook-form";
+
+import { Controller, useFormContext } from 'react-hook-form';
 
 const FormInput = ({
   name,
@@ -17,26 +18,21 @@ const FormInput = ({
   const { control } = useFormContext();
   return (
     <>
+      <label ht={name} className="block mt-2 text-sm font-medium text-black ">
+        {label ? label : null}
+      </label>
       <Controller
         control={control}
         name={name}
         render={({ field }) => (
-          <div>
-            <label
-              ht={name}
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
-              {label ? label : null}
-            </label>
-            <input
-              type={type}
-              id={id}
-              placeholder={placeholder}
-              value={value ? value : field.value}
-              defaultValue={defaultValue ? defaultValue : ""}
-              validation={validation ? validation : ""}
-            />
-          </div>
+          <input
+            placeholder={placeholder}
+            className="input input-bordered rounded input-md input-info w-2/3 place-content-center"
+            type={type}
+            {...field}
+            defaultValue={defaultValue ? defaultValue : ''}
+            value={value ? value : field.value}
+          />
         )}
       />
     </>
