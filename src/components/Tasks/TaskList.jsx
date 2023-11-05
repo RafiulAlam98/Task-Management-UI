@@ -1,40 +1,18 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 
 import Loading from '../ui/Loading';
 import { useQuery } from 'react-query';
 
-const TaskList = () => {
-  // const originalDate = new Date("2023-11-03T14:41:08.960Z");
-  // const options = { year: "numeric", month: "long", day: "numeric" };
-  // const formattedDate = originalDate.toLocaleDateString(undefined, options);
-
-  // console.log(formattedDate);
-  const {
-    data: tasks = [],
-    isLoading,
-    refetch,
-  } = useQuery({
-    queryKey: ["allTasks"],
-    queryFn: async () => {
-      const res = await fetch(
-        "https://task-management-api-sigma.vercel.app/api/v1/task"
-      );
-      const data = await res.json();
-      return data;
-    },
-  });
-
-  if (isLoading) {
-    return <Loading />;
-  }
+const TaskList = ({ tasks }) => {
   return (
     <>
       {tasks?.data.length > 0 ? (
-        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mx-auto">
+        <div className="grid sm:grid-cols-1 lg:grid-cols-2 gap-4 mx-auto">
           {tasks.data.map(item => (
             <div
               key={item._id}
-              className=" w-full rounded bg-base-100 shadow-xl ml-5"
+              className=" w-full rounded bg-base-100 shadow-xl mx-5"
             >
               <div className="flex justify-between items-center">
                 <div className="ml-4 mr-4 ">
@@ -51,9 +29,21 @@ const TaskList = () => {
                     {item.project}
                   </h2>
                 </div>
-                <h4 className="w-50 bg-[#17C16A] px-5 py-7 text-white font-semibold font-xl">
-                  {item.duration} Min
-                </h4>
+                <div className="flex justify-center items-center">
+                  <div className=" bg-[#0077B6] px-5 py-8">
+                    <span className=" text-white font-semibold font-xl">
+                      {item.duration} Min
+                    </span>
+                  </div>
+                  <div className="bg-[#17C16A] px-5 py-7">
+                    <span title="update task">
+                      <i className="fa-regular fa-eye mx-2 text-2xl text-white font-bold hover:text-[#023047]"></i>
+                    </span>
+                    <span title="delete task">
+                      <i className="fa-solid fa-trash mx-2 text-2xl text-white font-bold hover:text-red-500"></i>
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
           ))}

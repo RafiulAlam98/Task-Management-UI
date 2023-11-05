@@ -4,14 +4,35 @@ import Form from '../../components/Forms/Form';
 import FormInput from '../../components/Forms/FormInput';
 import FormSelectInput from '../../components/Forms/FormSelectInput';
 import { Link } from 'react-router-dom';
+import Loading from '../../components/ui/Loading';
 import TaskList from '../../components/Tasks/TaskList';
 import { priorities } from '../../components/constant/priority';
 import toast from 'react-hot-toast';
+import { useQuery } from 'react-query';
 import { useState } from 'react';
 
 const TodayTask = () => {
   const [loading, setLoading] = useState(false);
   const [responseData, setResponseData] = useState({});
+
+  const {
+    data: tasks = [],
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ['allTasks'],
+    queryFn: async () => {
+      const res = await fetch(
+        'https://task-management-api-sigma.vercel.app/api/v1/task'
+      );
+      const data = await res.json();
+      return data;
+    },
+  });
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   const onSubmit = data => {
     console.log(data);
@@ -39,6 +60,7 @@ const TodayTask = () => {
         setLoading(false);
         if (res.success === true) {
           toast.success(res.message);
+          refetch();
         }
         setResponseData(res);
       });
@@ -82,7 +104,7 @@ const TodayTask = () => {
       </div>
       <div className="divider"></div>
 
-      <TaskList />
+      <TaskList tasks={tasks} />
 
       <dialog id="add-task-modal" className="modal">
         <div className="modal-box w-full rounded">
