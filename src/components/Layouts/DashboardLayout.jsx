@@ -54,7 +54,7 @@ const DashboardLayout = () => {
             >
               <span>
                 <MdDashboardCustomize />
-              </span>{" "}
+              </span>{' '}
               <span> Dashboard</span>
             </Link>
           </li>
@@ -65,18 +65,18 @@ const DashboardLayout = () => {
             >
               <span>
                 <i className="fa-solid fa-star"></i>
-              </span>{" "}
+              </span>{' '}
               <span>Today</span>
             </Link>
           </li>
           <li className="my-1">
             <Link
               className="text-white text-xl font-semibold hover:text-blue-600 hover:bg-slate-100 "
-              to="/dashboard/projects "
+              to="/dashboard/projects"
             >
               <span>
                 <i className="fa-solid fa-circle-check"></i>
-              </span>{" "}
+              </span>{' '}
               <span>Projects</span>
             </Link>
           </li>
@@ -109,7 +109,7 @@ const DashboardLayout = () => {
             >
               <span>
                 <i className="fa-solid fa-user "></i>
-              </span>{" "}
+              </span>{' '}
               <span> Profile</span>
             </Link>
           </li>
@@ -117,7 +117,7 @@ const DashboardLayout = () => {
             <button className="text-white text-xl font-semibold hover:text-blue-600 hover:bg-slate-100 ">
               <span>
                 <i className="fa-solid fa-arrow-right-from-bracket"></i>
-              </span>{" "}
+              </span>{' '}
               Logout
             </button>
           </li>

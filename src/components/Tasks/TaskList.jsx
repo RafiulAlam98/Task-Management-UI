@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
-import { useQuery } from "react-query";
-import Loading from "../ui/Loading";
+
+import Loading from '../ui/Loading';
+import { useQuery } from 'react-query';
 
 const TaskList = () => {
   // const originalDate = new Date("2023-11-03T14:41:08.960Z");
@@ -30,7 +31,7 @@ const TaskList = () => {
     <>
       {tasks?.data.length > 0 ? (
         <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mx-auto">
-          {tasks.data.map((item) => (
+          {tasks.data.map(item => (
             <div
               key={item._id}
               className=" w-full rounded bg-base-100 shadow-xl ml-5"
@@ -59,12 +60,13 @@ const TaskList = () => {
         </div>
       ) : (
         <div className="flex justify-center items-center">
-          <h2 className="text-3xl font-semibold bg-[#023047] rounded text-white p-4">
-            No Task Added Yet
-          </h2>
           <h2 className="text-3xl ml-5 font-semibold border p-4 rounded-full text-white bg-[#023047]">
             <i className="fa-solid fa-basket-shopping"></i>
           </h2>
+          <h2 className="text-3xl font-semibold rounded text-white p-4">
+            No Task Added Yet!
+          </h2>
+          <h2>Please add your task for proper maintain your work schedule.</h2>
         </div>
       )}
     </>
