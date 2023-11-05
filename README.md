@@ -10,10 +10,6 @@ The Task Management App is a simple and intuitive application that helps you org
 
 - **Task Prioritization**: Assign priority levels to tasks to ensure you focus on what matters most.
 
-- **Task Categorization**: Organize tasks using tags or categories for better organization and quick access.
-
-- **Task Assignments**: Assign tasks to specific team members and track their progress.
-
 - **User Profiles**: Customize your profile with a profile picture, personal information, and notification preferences.
 
 ## Getting Started
