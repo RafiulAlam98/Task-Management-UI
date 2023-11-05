@@ -49,10 +49,12 @@ We encourage contributions from the open-source community. If you're interested 
 
 6. **Review and Merge**: Your pull request will undergo review, and once approved, it will be merged into the main repository.
 
+6. **For Sample Login**: You can log in with the demo email as employee@gmail.com and password hello@123.
+
 
 ## Contact
 
-If you have questions or need assistance, please feel free to reach out to me at [mrafiul.alam7@gmail.com].
+If you have questions or need assistance, please feel free to contact me at [mrafiul.alam7@gmail.com].
 
 Thank you for using the Task Management App! We hope it enhances your organization and productivity.
 
