@@ -8,44 +8,53 @@ import TaskFlow from '../pages/Dashboard/TaskFlow';
 import TaskReport from '../pages/Dashboard/TaskReport';
 import TodayTask from '../pages/Dashboard/TodayTask';
 import { createBrowserRouter } from 'react-router-dom';
+import SignUp from "../pages/SignUp";
 
 const routes = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <MainLayout />,
     children: [
       {
-        path: '/',
+        path: "/",
         element: <Login />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/signup",
+        element: <SignUp />,
       },
     ],
   },
   {
-    path: '/dashboard',
+    path: "/dashboard",
     element: <DashboardLayout />,
     children: [
       {
-        path: '/dashboard',
+        path: "/dashboard",
         element: <Dashboard />,
       },
       {
-        path: '/dashboard/today-task',
+        path: "/dashboard/today-task",
         element: <TodayTask />,
       },
       {
-        path: '/dashboard/projects',
+        path: "/dashboard/projects",
         element: <Projects />,
       },
       {
-        path: '/dashboard/task-flow',
+        path: "/dashboard/task-flow",
         element: <TaskFlow />,
       },
       {
-        path: '/dashboard/task-report',
+        path: "/dashboard/task-report",
         element: <TaskReport />,
       },
       {
-        path: '/dashboard/profile',
+        path: "/dashboard/profile",
         element: <Profile />,
       },
     ],

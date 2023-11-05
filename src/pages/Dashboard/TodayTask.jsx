@@ -108,7 +108,7 @@ const TodayTask = () => {
               />
               <button
                 className="btn block btn-sm btn-active btn-primary mt-5"
-                htmlType="submit"
+                type="submit"
               >
                 Submit
               </button>
