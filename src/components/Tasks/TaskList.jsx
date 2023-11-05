@@ -8,7 +8,7 @@ const TaskList = ({ tasks }) => {
   return (
     <>
       {tasks?.data.length > 0 ? (
-        <div className="grid sm:grid-cols-1 lg:grid-cols-2 gap-4 mx-auto">
+        <div className="grid sm:grid-cols-1 lg:grid-cols-2 gap-4 mx-auto mr-10">
           {tasks.data.map(item => (
             <div
               key={item._id}

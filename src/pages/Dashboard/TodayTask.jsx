@@ -68,12 +68,12 @@ const TodayTask = () => {
   return (
     <>
       <div className="grid grid-cols-4 gap-4">
-        <div className="">
+        <div className="ml-4">
           <button
             onClick={() =>
               document.getElementById('add-task-modal').showModal()
             }
-            className="btn btn-sm btn-primary my-4 ml-1"
+            className="btn btn-sm btn-primary my-4 "
           >
             <span>
               <i className="fa-solid fa-plus"></i>
