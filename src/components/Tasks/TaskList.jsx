@@ -8,15 +8,17 @@ import { Link } from "react-router-dom";
 import { getFromLocalStorage } from "../../helpers/utils/saveData";
 import { authEmail } from "../constant/authKey";
 
-const TaskList = ({ tasks, refetch }) => {
+const TaskList = ({ tasks, refetch, isLoading }) => {
   const [loading, setLoading] = useState(false);
   const [responseData, setResponseData] = useState({});
   const emailId = getFromLocalStorage(authEmail);
+  if (isLoading) {
+    return <Loading />;
+  }
 
   const loggedInUserTasks = tasks.data.filter(
     (item) => item.employee === emailId
   );
-
 
   const handleDelete = (id) => {
     console.log(id);
