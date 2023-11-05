@@ -1,15 +1,44 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 
-import Loading from '../ui/Loading';
-import { useQuery } from 'react-query';
+import { useState } from "react";
+import toast from "react-hot-toast";
+import Loading from "../ui/Loading";
+import { Link } from "react-router-dom";
 
-const TaskList = ({ tasks }) => {
+const TaskList = ({ tasks, refetch }) => {
+  const [loading, setLoading] = useState(false);
+  const [responseData, setResponseData] = useState({});
+
+  const handleDelete = (id) => {
+    console.log(id);
+    setLoading(true);
+    fetch(`https://task-management-api-sigma.vercel.app/api/v1/task/${id}`, {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        setLoading(false);
+        if (res.success === true) {
+          toast.success(res.message);
+          refetch();
+        }
+        setResponseData(res);
+      });
+  };
+
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <>
       {tasks?.data.length > 0 ? (
         <div className="grid sm:grid-cols-1 lg:grid-cols-2 gap-4 mx-auto mr-10">
-          {tasks.data.map(item => (
+          {tasks.data.map((item) => (
             <div
               key={item._id}
               className=" w-full rounded bg-base-100 shadow-xl mx-5"
@@ -36,12 +65,16 @@ const TaskList = ({ tasks }) => {
                     </span>
                   </div>
                   <div className="bg-[#17C16A] px-5 py-7">
-                    <span title="update task">
-                      <i className="fa-regular fa-eye mx-2 text-2xl text-white font-bold hover:text-[#023047]"></i>
-                    </span>
-                    <span title="delete task">
-                      <i className="fa-solid fa-trash mx-2 text-2xl text-white font-bold hover:text-red-500"></i>
-                    </span>
+                    <Link to={`/dashboard/edit-task/${item._id}`}>
+                      <span title="Edit task">
+                        <i className="fa-regular fa-eye mx-2 text-2xl text-white font-bold hover:text-[#023047]"></i>
+                      </span>
+                    </Link>
+                    <button onClick={() => handleDelete(item._id)}>
+                      <span title="Delete task">
+                        <i className="fa-solid fa-trash mx-2 text-2xl text-white font-bold hover:text-red-500"></i>
+                      </span>
+                    </button>
                   </div>
                 </div>
               </div>

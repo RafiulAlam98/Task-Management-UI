@@ -6,10 +6,10 @@ import FormSelectInput from '../../components/Forms/FormSelectInput';
 import { Link } from 'react-router-dom';
 import Loading from '../../components/ui/Loading';
 import TaskList from '../../components/Tasks/TaskList';
-import { priorities } from '../../components/constant/priority';
-import toast from 'react-hot-toast';
-import { useQuery } from 'react-query';
-import { useState } from 'react';
+import { priorities, status } from "../../components/constant/priority";
+import toast from "react-hot-toast";
+import { useQuery } from "react-query";
+import { useState } from "react";
 
 const TodayTask = () => {
   const [loading, setLoading] = useState(false);
@@ -20,10 +20,10 @@ const TodayTask = () => {
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ['allTasks'],
+    queryKey: ["allTasks"],
     queryFn: async () => {
       const res = await fetch(
-        'https://task-management-api-sigma.vercel.app/api/v1/task'
+        "https://task-management-api-sigma.vercel.app/api/v1/task"
       );
       const data = await res.json();
       return data;
@@ -34,28 +34,28 @@ const TodayTask = () => {
     return <Loading />;
   }
 
-  const onSubmit = data => {
+  const onSubmit = (data) => {
     console.log(data);
     const newData = {
       title: data.title,
-      duration: parseInt(data.duration),
-      project: `${data.project ? data.project : ''}`,
+      duration: data.duration,
+      project: `${data.project ? data.project : ""}`,
       taskDate: data.taskDate,
       description: data.description,
       priority: data.priority,
-      status: Boolean(`${false}`),
-      employee: 'abc@def.com',
+      status: data.status,
+      employee: "abc@def.com",
     };
     setLoading(true);
-    fetch('https://task-management-api-sigma.vercel.app/api/v1/task', {
-      method: 'POST',
+    fetch("https://task-management-api-sigma.vercel.app/api/v1/task", {
+      method: "POST",
       headers: {
-        'content-type': 'application/json',
+        "content-type": "application/json",
       },
       body: JSON.stringify(newData),
     })
-      .then(res => res.json())
-      .then(res => {
+      .then((res) => res.json())
+      .then((res) => {
         console.log(res);
         setLoading(false);
         if (res.success === true) {
@@ -71,7 +71,7 @@ const TodayTask = () => {
         <div className="ml-4">
           <button
             onClick={() =>
-              document.getElementById('add-task-modal').showModal()
+              document.getElementById("add-task-modal").showModal()
             }
             className="btn btn-sm btn-primary my-4 "
           >
@@ -104,7 +104,7 @@ const TodayTask = () => {
       </div>
       <div className="divider"></div>
 
-      <TaskList tasks={tasks} />
+      <TaskList refetch={refetch} tasks={tasks} />
 
       <dialog id="add-task-modal" className="modal">
         <div className="modal-box w-full rounded">
@@ -140,6 +140,13 @@ const TodayTask = () => {
                   <FormSelectInput
                     placeholder="Select Project"
                     name="project"
+                  />
+                </div>
+                <div>
+                  <FormSelectInput
+                    placeholder="Select Status"
+                    name="status"
+                    options={status}
                   />
                 </div>
               </div>

@@ -12,7 +12,6 @@ const Login = () => {
   const [responseData, setResponseData] = useState({});
   const navigate = useNavigate();
   const onSubmit = (data) => {
-    console.log(data);
     setLoading(true);
     fetch("https://task-management-api-sigma.vercel.app/api/v1/auth/login", {
       method: "POST",
@@ -23,7 +22,6 @@ const Login = () => {
     })
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
         setLoading(false);
         if (res.success === true) {
           toast.success(res.message);

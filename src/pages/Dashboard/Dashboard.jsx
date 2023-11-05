@@ -34,7 +34,7 @@ const Dashboard = () => {
         <Link to="/dashboard/task-report">
           <div className="flex justify-between items-center rounded bg-[#0077b6] py-6 px-4">
             <h3 className="text-3xl text-white font-semibold">Task Report</h3>
-            <h2 className="text-5xl  text-white">
+            <h2 className="text-4xl  text-white">
               <MdReport />
             </h2>
           </div>

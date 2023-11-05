@@ -9,6 +9,7 @@ import TaskReport from '../pages/Dashboard/TaskReport';
 import TodayTask from '../pages/Dashboard/TodayTask';
 import { createBrowserRouter } from 'react-router-dom';
 import SignUp from "../pages/SignUp";
+import EditTask from "../pages/Dashboard/EditTask";
 
 const routes = createBrowserRouter([
   {
@@ -56,6 +57,10 @@ const routes = createBrowserRouter([
       {
         path: "/dashboard/profile",
         element: <Profile />,
+      },
+      {
+        path: "/dashboard/edit-task/:id",
+        element: <EditTask />,
       },
     ],
   },

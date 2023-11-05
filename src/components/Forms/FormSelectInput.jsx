@@ -3,7 +3,14 @@
 /* eslint-disable no-unused-vars */
 import { Controller, useFormContext } from "react-hook-form";
 
-const FormSelectInput = ({ name, placeholder, validation, label, options }) => {
+const FormSelectInput = ({
+  name,
+  placeholder,
+  validation,
+  label,
+  options,
+  defaultValue,
+}) => {
   const { control } = useFormContext();
   return (
     <>
@@ -15,12 +22,16 @@ const FormSelectInput = ({ name, placeholder, validation, label, options }) => {
             onChange={onChange}
             value={value}
             placeholder={placeholder}
+            defaultValue={defaultValue}
             className="select select-sm rounded  select-info w-full max-w-xs"
           >
             <option disabled selected>
               {placeholder}
             </option>
-            {options && options.map((item) => <option>{item.option}</option>)}
+            {options &&
+              options.map((item) => (
+                <option key={item.id}>{item.option}</option>
+              ))}
           </select>
         )}
       />

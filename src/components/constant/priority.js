@@ -19,3 +19,14 @@ export const priorities = [
     option: "3rd Priority",
   },
 ];
+export const status = [
+  {
+    id: 1,
+    option: "complete",
+  },
+
+  {
+    id: 2,
+    option: "incomplete",
+  },
+];
