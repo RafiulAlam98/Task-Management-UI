@@ -5,7 +5,8 @@ import { useState } from "react";
 import Form from "../components/Forms/Form";
 import FormInput from "../components/Forms/FormInput";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { storeUserEmail, storeUserInfo } from "../services/auth";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -24,7 +25,11 @@ const Login = () => {
       .then((res) => {
         setLoading(false);
         if (res.success === true) {
+          console.log(res);
+          const { accessToken, emailId } = res.data;
           toast.success(res.message);
+          storeUserInfo(accessToken);
+          storeUserEmail(emailId);
           navigate("/dashboard");
         }
         setResponseData(res);
@@ -41,7 +46,7 @@ const Login = () => {
 
       <div className="my-auto w-2/3 mx-auto rounded shadow-2xl p-6">
         <h6 className="text-center text-2xl font-semibold mb-2 text-[#023047]">
-          Employee Login
+          User Login
         </h6>
         <Form className="" submitHandler={onSubmit}>
           <div className="w-full">
@@ -86,6 +91,11 @@ const Login = () => {
             </span>
           </div>
         )}
+        <Link to="/signup">
+          <h6 className="mt-4 text-xm font-semibold hover:text-blue-600">
+            Not an account? sign up here{" "}
+          </h6>
+        </Link>
       </div>
     </div>
   );

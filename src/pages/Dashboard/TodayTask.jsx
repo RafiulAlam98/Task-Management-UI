@@ -10,10 +10,14 @@ import { priorities, status } from "../../components/constant/priority";
 import toast from "react-hot-toast";
 import { useQuery } from "react-query";
 import { useState } from "react";
+import { getFromLocalStorage } from "../../helpers/utils/saveData";
+import { authEmail } from "../../components/constant/authKey";
 
 const TodayTask = () => {
   const [loading, setLoading] = useState(false);
   const [responseData, setResponseData] = useState({});
+  const email = getFromLocalStorage(authEmail);
+  console.log("getFromLocalStorage", email);
 
   const {
     data: tasks = [],
@@ -44,7 +48,7 @@ const TodayTask = () => {
       description: data.description,
       priority: data.priority,
       status: data.status,
-      employee: "abc@def.com",
+      employee: email,
     };
     setLoading(true);
     fetch("https://task-management-api-sigma.vercel.app/api/v1/task", {
