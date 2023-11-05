@@ -1,8 +1,16 @@
-import { Link, Outlet } from 'react-router-dom';
-import { MdDashboardCustomize, MdReport } from 'react-icons/Md';
+import { Link, Outlet, useNavigate } from "react-router-dom";
+import { MdDashboardCustomize, MdReport } from "react-icons/Md";
+import { authEmail, authKey } from "../constant/authKey";
+import { removeUserId, removeUserToken } from "../../services/auth";
 
 /* eslint-disable react/prop-types */
 const DashboardLayout = () => {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    removeUserToken(authKey);
+    removeUserId(authEmail);
+    navigate("/login");
+  };
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -54,7 +62,7 @@ const DashboardLayout = () => {
             >
               <span>
                 <MdDashboardCustomize />
-              </span>{' '}
+              </span>{" "}
               <span> Dashboard</span>
             </Link>
           </li>
@@ -65,7 +73,7 @@ const DashboardLayout = () => {
             >
               <span>
                 <i className="fa-solid fa-star"></i>
-              </span>{' '}
+              </span>{" "}
               <span>Today</span>
             </Link>
           </li>
@@ -76,7 +84,7 @@ const DashboardLayout = () => {
             >
               <span>
                 <i className="fa-solid fa-circle-check"></i>
-              </span>{' '}
+              </span>{" "}
               <span>Projects</span>
             </Link>
           </li>
@@ -109,15 +117,18 @@ const DashboardLayout = () => {
             >
               <span>
                 <i className="fa-solid fa-user "></i>
-              </span>{' '}
+              </span>{" "}
               <span> Profile</span>
             </Link>
           </li>
           <li className="my-1">
-            <button className="text-white text-xl font-semibold hover:text-blue-600 hover:bg-slate-100 ">
+            <button
+              onClick={handleLogout}
+              className="text-white text-xl font-semibold hover:text-blue-600 hover:bg-slate-100 "
+            >
               <span>
                 <i className="fa-solid fa-arrow-right-from-bracket"></i>
-              </span>{' '}
+              </span>
               Logout
             </button>
           </li>

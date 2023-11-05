@@ -10,3 +10,11 @@ export const storeUserInfo = (verify) => {
 export const storeUserEmail = (verify) => {
   return setEmailIdToLocalStorage(authEmail, verify);
 };
+
+export const removeUserToken = (key) => {
+  return localStorage.removeItem(key);
+};
+export const removeUserId = (key) => {
+  return localStorage.removeItem(key);
+};
+

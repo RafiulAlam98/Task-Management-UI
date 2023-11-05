@@ -5,10 +5,18 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import Loading from "../ui/Loading";
 import { Link } from "react-router-dom";
+import { getFromLocalStorage } from "../../helpers/utils/saveData";
+import { authEmail } from "../constant/authKey";
 
 const TaskList = ({ tasks, refetch }) => {
   const [loading, setLoading] = useState(false);
   const [responseData, setResponseData] = useState({});
+  const emailId = getFromLocalStorage(authEmail);
+
+  const loggedInUserTasks = tasks.data.filter(
+    (item) => item.employee === emailId
+  );
+  console.log(loggedInUserTasks);
 
   const handleDelete = (id) => {
     console.log(id);
@@ -36,9 +44,9 @@ const TaskList = ({ tasks, refetch }) => {
   }
   return (
     <>
-      {tasks?.data.length > 0 ? (
+      {loggedInUserTasks.length > 0 ? (
         <div className="grid sm:grid-cols-1 lg:grid-cols-2 gap-4 mx-auto mr-10">
-          {tasks.data.map((item) => (
+          {loggedInUserTasks.map((item) => (
             <div
               key={item._id}
               className=" w-full rounded bg-base-100 shadow-xl mx-5"
@@ -82,14 +90,20 @@ const TaskList = ({ tasks, refetch }) => {
           ))}
         </div>
       ) : (
-        <div className="flex justify-center items-center">
-          <h2 className="text-3xl ml-5 font-semibold border p-4 rounded-full text-white bg-[#023047]">
-            <i className="fa-solid fa-basket-shopping"></i>
-          </h2>
-          <h2 className="text-3xl font-semibold rounded text-white p-4">
-            No Task Added Yet!
-          </h2>
-          <h2>Please add your task for proper maintain your work schedule.</h2>
+        <div className="flex justify-center items-center min-h-screen">
+          <div className="flex justify-center items-center  flex-col">
+            <h2 className="text-3xl ml-5 font-semibold border p-4 rounded-full text-white bg-[#023047]">
+              <i className="fa-solid fa-basket-shopping"></i>
+            </h2>
+            <div>
+              <h2 className="text-3xl font-semibold rounded text-center mt-4">
+                No Task Added Yet!
+              </h2>
+              <h2 className="text-center">
+                Please add your task for proper maintain your work schedule.
+              </h2>
+            </div>
+          </div>
         </div>
       )}
     </>
