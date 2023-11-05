@@ -1,32 +1,32 @@
 export const priorities = [
   {
     id: 1,
-    option: "none",
+    title: "none",
   },
 
   {
     id: 2,
-    option: "1st Priority",
+    title: "1st Priority",
   },
 
   {
     id: 3,
-    option: "2nd Priority",
+    title: "2nd Priority",
   },
 
   {
     id: 4,
-    option: "3rd Priority",
+    title: "3rd Priority",
   },
 ];
 export const status = [
   {
     id: 1,
-    option: "complete",
+    title: "complete",
   },
 
   {
     id: 2,
-    option: "incomplete",
+    title: "incomplete",
   },
 ];

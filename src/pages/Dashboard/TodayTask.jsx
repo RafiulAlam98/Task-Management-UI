@@ -1,24 +1,26 @@
+/* eslint-disable react-hooks/rules-of-hooks */
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unknown-property */
 
-import Form from '../../components/Forms/Form';
-import FormInput from '../../components/Forms/FormInput';
-import FormSelectInput from '../../components/Forms/FormSelectInput';
-import { Link } from 'react-router-dom';
-import Loading from '../../components/ui/Loading';
-import TaskList from '../../components/Tasks/TaskList';
+import Form from "../../components/Forms/Form";
+import FormInput from "../../components/Forms/FormInput";
+import FormSelectInput from "../../components/Forms/FormSelectInput";
+import { Link } from "react-router-dom";
+import Loading from "../../components/ui/Loading";
+import TaskList from "../../components/Tasks/TaskList";
 import { priorities, status } from "../../components/constant/priority";
 import toast from "react-hot-toast";
 import { useQuery } from "react-query";
 import { useState } from "react";
 import { getFromLocalStorage } from "../../helpers/utils/saveData";
 import { authEmail } from "../../components/constant/authKey";
+import useProjects from "../../hooks/useProjects";
 
 const TodayTask = () => {
+  const email = getFromLocalStorage(authEmail);
   const [loading, setLoading] = useState(false);
   const [responseData, setResponseData] = useState({});
-  const email = getFromLocalStorage(authEmail);
-  console.log("getFromLocalStorage", email);
-
+  const [projects] = useProjects();
   const {
     data: tasks = [],
     isLoading,
@@ -33,13 +35,15 @@ const TodayTask = () => {
       return data;
     },
   });
-
   if (isLoading) {
     return <Loading />;
   }
 
+  const loggedInUserProjects = projects.data.filter(
+    (item) => item.employee === email
+  );
+
   const onSubmit = (data) => {
-    console.log(data);
     const newData = {
       title: data.title,
       duration: data.duration,
@@ -144,6 +148,7 @@ const TodayTask = () => {
                   <FormSelectInput
                     placeholder="Select Project"
                     name="project"
+                    options={loggedInUserProjects}
                   />
                 </div>
                 <div>

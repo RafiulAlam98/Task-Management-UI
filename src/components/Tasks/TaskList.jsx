@@ -16,7 +16,7 @@ const TaskList = ({ tasks, refetch }) => {
   const loggedInUserTasks = tasks.data.filter(
     (item) => item.employee === emailId
   );
-  console.log(loggedInUserTasks);
+
 
   const handleDelete = (id) => {
     console.log(id);

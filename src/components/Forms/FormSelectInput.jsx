@@ -30,7 +30,7 @@ const FormSelectInput = ({
             </option>
             {options &&
               options.map((item) => (
-                <option key={item.id}>{item.option}</option>
+                <option key={item.id}>{item.title}</option>
               ))}
           </select>
         )}
