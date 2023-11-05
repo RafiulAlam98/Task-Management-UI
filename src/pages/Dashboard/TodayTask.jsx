@@ -1,14 +1,47 @@
 /* eslint-disable react/no-unknown-property */
-import { Link } from "react-router-dom";
-import Form from "../../components/Forms/Form";
-import FormInput from "../../components/Forms/FormInput";
-import FormSelectInput from "../../components/Forms/FormSelectInput";
-import TaskList from "../../components/Tasks/TaskList";
-import { priorities } from "../../components/constant/priority";
+
+import Form from '../../components/Forms/Form';
+import FormInput from '../../components/Forms/FormInput';
+import FormSelectInput from '../../components/Forms/FormSelectInput';
+import { Link } from 'react-router-dom';
+import TaskList from '../../components/Tasks/TaskList';
+import { priorities } from '../../components/constant/priority';
+import toast from 'react-hot-toast';
+import { useState } from 'react';
 
 const TodayTask = () => {
-  const onSubmit = (data) => {
+  const [loading, setLoading] = useState(false);
+  const [responseData, setResponseData] = useState({});
+
+  const onSubmit = data => {
     console.log(data);
+    const newData = {
+      title: data.title,
+      duration: parseInt(data.duration),
+      project: `${data.project ? data.project : ''}`,
+      taskDate: data.taskDate,
+      description: data.description,
+      priority: data.priority,
+      status: Boolean(`${false}`),
+      employee: 'abc@def.com',
+    };
+    setLoading(true);
+    fetch('https://task-management-api-sigma.vercel.app/api/v1/task', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(newData),
+    })
+      .then(res => res.json())
+      .then(res => {
+        console.log(res);
+        setLoading(false);
+        if (res.success === true) {
+          toast.success(res.message);
+        }
+        setResponseData(res);
+      });
   };
   return (
     <>
@@ -16,7 +49,7 @@ const TodayTask = () => {
         <div className="">
           <button
             onClick={() =>
-              document.getElementById("add-task-modal").showModal()
+              document.getElementById('add-task-modal').showModal()
             }
             className="btn btn-sm btn-primary my-4 ml-1"
           >
@@ -106,14 +139,42 @@ const TodayTask = () => {
                 placeholder="Description"
                 type="text"
               />
-              <button
-                className="btn block btn-sm btn-active btn-primary mt-5"
-                type="submit"
-              >
-                Submit
-              </button>
+              {loading ? (
+                <span className="loading loading-spinner loading-lg"></span>
+              ) : (
+                <button
+                  className="btn block btn-sm btn-active btn-primary mt-5"
+                  type="submit"
+                >
+                  Submit
+                </button>
+              )}
             </Form>
           </div>
+          {responseData.success === false > 0 && (
+            <div className="alert alert-error mt-5 rounded">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="stroke-current shrink-0 h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  className="text-white"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <spa className="text-sm text-white font-semibold block">
+                {responseData.message}
+              </spa>
+              <span className="text-sm text-white font-semibold block">
+                {responseData.errorMessages[0].message}
+              </span>
+            </div>
+          )}
         </div>
       </dialog>
     </>
