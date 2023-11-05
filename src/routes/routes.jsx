@@ -10,6 +10,7 @@ import TodayTask from '../pages/Dashboard/TodayTask';
 import { createBrowserRouter } from 'react-router-dom';
 import SignUp from "../pages/SignUp";
 import EditTask from "../pages/Dashboard/EditTask";
+import PrivateRoutes from "./PrivateRoutes";
 
 const routes = createBrowserRouter([
   {
@@ -32,7 +33,11 @@ const routes = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashboardLayout />,
+    element: (
+      <PrivateRoutes>
+        <DashboardLayout />
+      </PrivateRoutes>
+    ),
     children: [
       {
         path: "/dashboard",
