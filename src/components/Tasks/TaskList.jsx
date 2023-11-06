@@ -12,13 +12,10 @@ const TaskList = ({ tasks, refetch, isLoading }) => {
   const [loading, setLoading] = useState(false);
   const [responseData, setResponseData] = useState({});
   const emailId = getFromLocalStorage(authEmail);
+
   if (isLoading) {
     return <Loading />;
   }
-
-  const loggedInUserTasks = tasks.data.filter(
-    (item) => item.employee === emailId
-  );
 
   const handleDelete = (id) => {
     console.log(id);
@@ -41,14 +38,11 @@ const TaskList = ({ tasks, refetch, isLoading }) => {
       });
   };
 
-  if (loading) {
-    return <Loading />;
-  }
   return (
     <>
-      {loggedInUserTasks.length > 0 ? (
+      {tasks.data.length > 0 ? (
         <div className="grid sm:grid-cols-1 lg:grid-cols-2 gap-4 mx-auto mr-10">
-          {loggedInUserTasks.map((item) => (
+          {tasks.data.map((item) => (
             <div
               key={item._id}
               className=" w-full rounded bg-base-100 shadow-xl mx-5"
@@ -64,6 +58,17 @@ const TaskList = ({ tasks, refetch, isLoading }) => {
                     </di>
                   )}
                   <h2 className="text-md font-base ">{item.title}</h2>
+
+                  {item.status === "complete" ? (
+                    <h2 className="text-sm font-base text-success capitalize ">
+                      {item.status}
+                    </h2>
+                  ) : (
+                    <h2 className="text-sm font-base capitalize text-warning ">
+                      {item.status}
+                    </h2>
+                  )}
+
                   <h2 className="text-sm  text-[#17C16A] font-semibold">
                     {item.project}
                   </h2>

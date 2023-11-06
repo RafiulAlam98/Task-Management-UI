@@ -1,11 +1,8 @@
 import { Link } from 'react-router-dom';
 import { MdReport } from 'react-icons/Md';
-import useProjects from "../../hooks/useProjects";
-import useTasks from "../../hooks/useTasks";
+
 
 const Dashboard = () => {
-  const [projects] = useProjects();
-  const [tasks] = useTasks();
   return (
     <div className="flex justify-start items-center my-4 rounded">
       <div className="card rounded w-2/3 bg-base-100 shadow-xl mx-3 ">
@@ -17,9 +14,7 @@ const Dashboard = () => {
             </div>
           </div>
 
-          <h2 className=" text-4xl text-teal-600 font-bold py-4 px-4">
-            {projects?.data.length}
-          </h2>
+          <h2 className=" text-4xl text-teal-600 font-bold py-4 px-4">4</h2>
         </Link>
       </div>
       <div className="card rounded w-2/3 bg-base-100 shadow-xl mx-3 ">
@@ -33,9 +28,7 @@ const Dashboard = () => {
             </div>
           </div>
 
-          <h2 className=" text-4xl text-teal-600 font-bold py-4 px-4">
-            {tasks.data.length}
-          </h2>
+          <h2 className=" text-4xl text-teal-600 font-bold py-4 px-4">4</h2>
         </Link>
       </div>
       <div className="card rounded w-2/3 bg-base-100 shadow-xl mx-3 ">

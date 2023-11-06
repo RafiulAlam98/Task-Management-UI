@@ -9,8 +9,10 @@ import toast from "react-hot-toast";
 import { useQuery } from "react-query";
 import Loading from "../../components/ui/Loading";
 import useProjects from "../../hooks/useProjects";
+import { getFromLocalStorage } from "../../helpers/utils/saveData";
 
 const EditTask = () => {
+  const email = getFromLocalStorage();
   const [loading, setLoading] = useState(false);
   const [responseData, setResponseData] = useState({});
   const [projects] = useProjects();
@@ -31,7 +33,6 @@ const EditTask = () => {
       return data;
     },
   });
-
   if (isLoading) {
     return <Loading />;
   }
@@ -39,7 +40,7 @@ const EditTask = () => {
   const onSubmit = (data) => {
     const newData = {
       title: `${data.title ? data.title : tasks.data.title}`,
-      duration: `${data.duration ? data.duration : tasks.data.title}`,
+      duration: `${data.duration ? data.duration : tasks.data.duration}`,
       project: `${data.project ? data.project : tasks.data.project}`,
       taskDate: `${data.taskDate ? data.taskDate : tasks.data.taskDate}`,
       description: `${
@@ -47,7 +48,7 @@ const EditTask = () => {
       }`,
       priority: `${data.priority ? data.priority : tasks.data.priority}`,
       status: `${data.status ? data.status : tasks.data.status}`,
-      employee: "abc@def.com",
+      employee: email,
     };
     console.log(data, newData);
     setLoading(true);
@@ -65,7 +66,7 @@ const EditTask = () => {
         if (res.success === true) {
           toast.success(res.message);
           refetch();
-          navigate("/dashboard");
+          navigate("/dashboard/today-task");
         }
         setResponseData(res);
       });
