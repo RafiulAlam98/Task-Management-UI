@@ -18,6 +18,7 @@ import useProjects from "../../hooks/useProjects";
 
 const TodayTask = () => {
   const email = getFromLocalStorage(authEmail);
+  let loggedInUserProjects;
   const [loading, setLoading] = useState(false);
   const [responseData, setResponseData] = useState({});
   const [projects] = useProjects();
@@ -38,8 +39,6 @@ const TodayTask = () => {
   if (isLoading) {
     return <Loading />;
   }
-
-
 
   const onSubmit = (data) => {
     const newData = {
@@ -71,9 +70,11 @@ const TodayTask = () => {
         setResponseData(res);
       });
   };
-    const loggedInUserProjects = projects.data.filter(
+  if (email && projects?.data.length && !isLoading) {
+    loggedInUserProjects = projects.data.filter(
       (item) => item.employee === email
     );
+  }
     return (
       <>
         <div className="grid grid-cols-4 gap-4">

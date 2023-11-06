@@ -93,7 +93,7 @@ const Login = () => {
         )}
         <Link to="/signup">
           <h6 className="mt-4 text-xm font-semibold hover:text-blue-600">
-            Not an account? sign up here{" "}
+            Not an account? Click here to sign up..
           </h6>
         </Link>
       </div>

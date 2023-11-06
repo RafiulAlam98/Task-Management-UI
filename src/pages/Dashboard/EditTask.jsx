@@ -8,10 +8,12 @@ import FormInput from "../../components/Forms/FormInput";
 import toast from "react-hot-toast";
 import { useQuery } from "react-query";
 import Loading from "../../components/ui/Loading";
+import useProjects from "../../hooks/useProjects";
 
 const EditTask = () => {
   const [loading, setLoading] = useState(false);
   const [responseData, setResponseData] = useState({});
+  const [projects] = useProjects();
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -89,6 +91,7 @@ const EditTask = () => {
                 defaultValue={tasks.data.project}
                 placeholder="Select Project"
                 name="project"
+                options={projects.data}
               />
             </div>
           </div>
