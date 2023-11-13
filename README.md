@@ -4,6 +4,8 @@ The Task Management App is a simple and intuitive application that helps you org
 
 ![Task Management App Screenshot](https://i.ibb.co/qmMB6mN/task-management.png)
 
+### Live URL: https://employee-task-management.netlify.app/
+
 ## Features
 
 - **Task Creation**: Create, edit, and delete tasks with ease. Add a title, description, due date, and assign tasks to individuals or teams.
